@@ -1,0 +1,11 @@
+"use client";
+
+import { useState } from "react";
+import { Bot, Check, Sparkles, Users } from "lucide-react";
+
+const options = [{ key: "home", label: "Morocco", pct: 24 }, { key: "draw", label: "Draw", pct: 38 }, { key: "away", label: "Spain", pct: 38 }];
+
+export function PredictionPanel() {
+  const [pick, setPick] = useState<string | null>(null);
+  return <div className="space-y-4"><div className="surface p-5 sm:p-6"><div className="flex items-center justify-between"><div><h3 className="text-sm font-black">Who wins?</h3><p className="mt-1 flex items-center gap-1.5 text-[10px] font-bold text-mist"><Users className="h-3 w-3" />12,482 fan votes</p></div>{pick && <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-400"><Check className="h-3 w-3" />Vote saved</span>}</div><div className="mt-5 grid grid-cols-3 gap-2">{options.map((o) => <button key={o.key} onClick={() => setPick(o.key)} className={`focus-ring rounded-xl border px-2 py-3 text-xs font-extrabold transition ${pick === o.key ? "border-electric bg-electric text-white" : "border-line bg-white/[0.03] text-mist hover:border-electric/40 hover:text-white"}`}>{o.label}</button>)}</div><div className="mt-5 flex h-2 overflow-hidden rounded-full"><span className="bg-[#00A985]" style={{ width: "24%" }} /><span className="bg-mist" style={{ width: "38%" }} /><span className="bg-flare" style={{ width: "38%" }} /></div><div className="mt-2 flex justify-between text-[10px] font-black"><span>24%</span><span>38%</span><span>38%</span></div></div><div className="relative overflow-hidden rounded-[22px] border border-electric/25 bg-gradient-to-br from-electric/20 to-[#6C4DFF]/10 p-5"><Sparkles className="absolute -right-4 -top-4 h-24 w-24 text-electric/[0.08]" /><div className="relative flex gap-3"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-electric"><Bot className="h-5 w-5" /></span><div><p className="eyebrow text-blue-300">MatchTalk pick</p><h3 className="mt-1.5 text-base font-black">Spain — narrow edge</h3><p className="mt-2 text-xs font-semibold leading-5 text-mist">Spain’s possession and deeper bench make them slight favorites, but Morocco’s counterattack keeps the draw very live.</p></div></div></div></div>;
+}

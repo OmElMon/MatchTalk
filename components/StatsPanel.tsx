@@ -1,0 +1,5 @@
+import { stats } from "@/data/matches";
+
+export function StatsPanel() {
+  return <div className="surface p-5 sm:p-6"><div className="mb-6 flex items-center justify-between"><span className="text-sm font-black">Match stats</span><span className="text-[10px] font-bold text-mist">MAR <span className="mx-2 text-line">vs</span> ESP</span></div><div className="space-y-5">{stats.map((s) => { const total = s.home + s.away; const homeWidth = s.suffix ? s.home : (s.home / total) * 100; return <div key={s.label}><div className="mb-2 flex items-center justify-between text-xs"><strong className="w-10 tabular-nums">{s.home}{s.suffix}</strong><span className="font-bold text-mist">{s.label}</span><strong className="w-10 text-right tabular-nums">{s.away}{s.suffix}</strong></div><div className="flex h-1.5 overflow-hidden rounded-full bg-white/10"><div className="bg-electric" style={{ width: `${homeWidth}%` }} /><div className="bg-flare" style={{ width: `${100 - homeWidth}%` }} /></div></div>; })}</div></div>;
+}
